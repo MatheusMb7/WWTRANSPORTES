@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WW Transportes de Cargas — Transporte de Combustíveis em Brasília</title>
+<meta name="description" content="WW Transportes de Cargas — transporte exclusivo de combustíveis para postos do DF e entorno desde 2007. Frota própria, segurança e agilidade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#19181a;
+    --charcoal:#3a3a3c;
+    --steel:#59595c;
+    --red:#e42313;
+    --red-dark:#b71c0e;
+    --amber:#f2a900;
+    --paper:#f4f2ed;
+    --paper-dim:#e9e6de;
+    --line:rgba(255,255,255,.12);
+    --line-dark:rgba(0,0,0,.1);
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media(max-width:640px){ .wrap{padding:0 20px;} }
+
+  h1,h2,h3,h4{font-family:var(--display); letter-spacing:-0.01em; line-height:1.05;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--red);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+    font-weight:600;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:11px;
+    background:var(--red);
+    clip-path:polygon(0 100%, 25% 0, 50% 100%, 75% 0, 100% 100%);
+  }
+
+  /* ===== Hazmat diamond motif ===== */
+  .diamond{
+    width:64px; height:64px;
+    background:var(--ink);
+    border:2px solid var(--amber);
+    transform:rotate(45deg);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .diamond span{
+    transform:rotate(-45deg);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:11px;
+    color:var(--amber);
+    text-align:center;
+    line-height:1.15;
+  }
+
+  /* ===== Header ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(33, 31, 34, 0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:24px;
+    padding:14px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; justify-self:start;}
+  .brand img{height:38px; width:auto;}
+  .brand-name{
+    font-family:var(--display); font-weight:700; font-size:15px;
+    color:#fff; letter-spacing:.01em; line-height:1.1;
+  }
+  .brand-name small{display:block; font-family:var(--mono); font-weight:500; font-size:9.5px; color:var(--amber); letter-spacing:.1em; margin-top:2px;}
+  nav.links{display:flex; gap:30px; justify-self:center;}
+  nav.links a{
+    font-size:14px; font-weight:500; color:#d8d6d0;
+    transition:color .2s;
+  }
+  nav.links a:hover{color:var(--amber);}
+  .nav-cta{
+    background:var(--red); color:#fff; font-weight:600; font-size:14px;
+    padding:10px 20px; border-radius:3px;
+    display:flex; align-items:center; gap:8px;
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--red-dark);}
+  .menu-btn{display:none; background:none; border:none; color:#fff; font-size:26px; cursor:pointer;}
+  @media(max-width:900px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:flex-end;
+    background:linear-gradient(180deg, rgba(25,24,26,.55) 0%, rgba(25,24,26,.4) 40%, rgba(25,24,26,.97) 92%), url('assets/truck11.jpg') center 62%/cover no-repeat;
+    padding-top:90px;
+  }
+  .hero-inner{
+    max-width:1180px; margin:0 auto; width:100%;
+    padding:0 32px 76px;
+    color:#fff;
+  }
+  .hero-tag{
+    font-family:var(--mono); font-size:13px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--amber); font-weight:600; margin-bottom:20px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .hero-tag .rule{width:40px; height:2px; background:var(--amber);}
+  .hero h1{
+    font-size:clamp(38px, 6.2vw, 78px);
+    font-weight:700;
+    max-width:820px;
+    color:#fff;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--red);
+  }
+  .hero p{
+    margin-top:22px;
+    font-size:18px;
+    max-width:560px;
+    color:#d8d6d0;
+  }
+  .hero-actions{
+    margin-top:36px;
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .btn{
+    font-weight:600; font-size:15px;
+    padding:15px 28px; border-radius:3px;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:transform .2s, background .2s, border-color .2s;
+  }
+  .btn-primary{background:var(--red); color:#fff;}
+  .btn-primary:hover{background:var(--red-dark); transform:translateY(-2px);}
+  .btn-ghost{border:1px solid rgba(255,255,255,.35); color:#fff;}
+  .btn-ghost:hover{border-color:var(--amber); color:var(--amber); transform:translateY(-2px);}
+
+  .hero-stats{
+    margin-top:60px;
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+  .hero-stats .stat b{
+    font-family:var(--display); font-size:clamp(22px,3vw,34px); color:#fff; font-weight:700; display:block;
+  }
+  .hero-stats .stat span{
+    font-size:12.5px; color:#a9a7a1; text-transform:uppercase; letter-spacing:.06em; font-family:var(--mono);
+  }
+  @media(max-width:760px){
+    .hero-stats{grid-template-columns:repeat(2,1fr); row-gap:24px;}
+  }
+
+  /* ===== Section base ===== */
+  section{padding:110px 0;}
+  @media(max-width:760px){ section{padding:72px 0;} }
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:clamp(30px,4vw,44px); font-weight:700;}
+  .section-head p{margin-top:16px; font-size:16.5px; color:var(--steel);}
+
+  /* ===== Sobre / Quem somos ===== */
+  #sobre{background:var(--paper);}
+  .sobre-grid{
+    display:grid; grid-template-columns:1.2fr 1fr; gap:64px; align-items:center;
+  }
+  .sobre-photo{position:relative;}
+  .sobre-photo img{border-radius:4px; box-shadow:0 30px 60px -20px rgba(25,24,26,.35);}
+  .sobre-photo .tag{
+    position:absolute; bottom:-22px; left:-22px;
+    background:var(--ink); color:#fff;
+    padding:16px 20px; border-radius:3px;
+    font-family:var(--mono); font-size:13px;
+    border-left:4px solid var(--red);
+  }
+  .sobre-photo .tag b{display:block; font-family:var(--display); font-size:26px; color:var(--amber);}
+  .sobre-text h3{font-size:15px; text-transform:uppercase; letter-spacing:.08em; color:var(--red); font-family:var(--mono); font-weight:600; margin-bottom:16px;}
+  .sobre-text p{font-size:17px; color:#333; margin-bottom:16px;}
+  .sobre-text p strong{color:var(--ink);}
+  .sobre-facts{display:flex; gap:28px; margin-top:32px; flex-wrap:wrap;}
+  .sobre-facts div{border-left:2px solid var(--paper-dim); padding-left:14px;}
+  .sobre-facts b{display:block; font-family:var(--display); font-size:15px;}
+  .sobre-facts span{font-size:13px; color:var(--steel);}
+  @media(max-width:860px){
+    .sobre-grid{grid-template-columns:1fr; gap:60px;}
+    .sobre-photo .tag{left:0;}
+  }
+
+  /* ===== Missão Visão Valores ===== */
+  #identidade{background:var(--ink); color:#fff; position:relative; overflow:hidden;}
+  #identidade .eyebrow{color:var(--amber);}
+  #identidade .eyebrow::before{background:var(--amber);}
+  #identidade .section-head h2{color:#fff;}
+  #identidade .section-head p{color:#b7b5af;}
+  .mvv-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:60px;}
+  .mvv-card{background:var(--ink); padding:36px 30px;}
+  .mvv-card h4{font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--amber); margin-bottom:14px; font-weight:600;}
+  .mvv-card p{font-size:16px; color:#e2e0da;}
+  @media(max-width:800px){ .mvv-grid{grid-template-columns:1fr;} }
+
+  .valores-row{display:flex; gap:26px; flex-wrap:wrap;}
+  .valor{display:flex; align-items:center; gap:18px; flex:1 1 260px;}
+  .valor p{font-size:14.5px; color:#cecbc4; line-height:1.45;}
+  .valor p b{display:block; color:#fff; font-size:15px; margin-bottom:3px; font-family:var(--display);}
+
+  /* ===== Frota ===== */
+  #frota{background:var(--paper);}
+  .frota-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .frota-card{background:#fff; border:1px solid var(--paper-dim); border-radius:4px; overflow:hidden; position:relative; transition:transform .25s, box-shadow .25s;}
+  .frota-card:hover{transform:translateY(-6px); box-shadow:0 24px 40px -18px rgba(25,24,26,.25);}
+  .frota-card .photo{position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--paper-dim); display:flex; align-items:center; justify-content:center;}
+  .frota-card .photo img{width:100%; height:100%; object-fit:contain;}
+  .capacity-tag{
+    position:absolute; top:14px; right:14px;
+    width:58px; height:58px;
+    background:var(--red); border:2px solid #fff;
+    transform:rotate(45deg);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+  }
+  .capacity-tag span{transform:rotate(-45deg); font-family:var(--mono); font-weight:600; color:#fff; font-size:12px; text-align:center; line-height:1.1;}
+  .frota-card .info{padding:20px 22px;}
+  .frota-card .info h4{font-size:17px; font-weight:600; margin-bottom:6px;}
+  .frota-card .info p{font-size:13.5px; color:var(--steel);}
+  @media(max-width:900px){ .frota-grid{grid-template-columns:1fr 1fr;} }
+  @media(max-width:600px){ .frota-grid{grid-template-columns:1fr;} }
+
+  .frota-slideshow{margin-top:50px;}
+  .slide-frame{
+    position:relative; width:100%;
+    aspect-ratio:16/8.5;
+    background:var(--ink);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .slide-frame img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:contain;
+    opacity:0;
+    transition:opacity 1.1s ease;
+  }
+  .slide-frame img.active{opacity:1;}
+  .slide-dots{
+    display:flex; justify-content:center; gap:9px;
+    margin-top:20px;
+  }
+  .slide-dots button{
+    width:9px; height:9px; border-radius:50%;
+    border:none; background:var(--paper-dim);
+    cursor:pointer; padding:0; transition:background .2s, transform .2s;
+  }
+  .slide-dots button.active{background:var(--red); transform:scale(1.2);}
+  @media(max-width:760px){
+    .slide-frame{aspect-ratio:4/3.4;}
+  }
+
+  /* ===== Cobertura / Clientes ===== */
+  #cobertura{background:#fff; border-top:1px solid var(--paper-dim); border-bottom:1px solid var(--paper-dim);}
+  .cobertura-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:70px; align-items:start;}
+  .cobertura-text p{font-size:16.5px; color:#333; margin-bottom:16px;}
+  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;}
+  .chip{
+    font-family:var(--mono); font-size:12.5px; font-weight:500;
+    padding:9px 15px; border:1px solid var(--paper-dim); border-radius:20px;
+    color:var(--charcoal); background:var(--paper);
+  }
+  .clientes-box h3{font-size:14px; text-transform:uppercase; font-family:var(--mono); letter-spacing:.08em; color:var(--red); font-weight:600; margin-bottom:18px;}
+  @media(max-width:860px){ .cobertura-grid{grid-template-columns:1fr; gap:44px;} }
+
+  /* ===== Distribuidoras ===== */
+  #distribuidoras{background:var(--paper-dim);}
+  #distribuidoras .section-head{margin-bottom:40px;}
+  .dist-strip{
+    display:flex; flex-wrap:wrap; gap:16px; align-items:stretch;
+  }
+  .dist-logo{
+    background:#fff; border:1px solid #ddd9cf; border-radius:4px;
+    padding:16px; display:flex; align-items:center; justify-content:center;
+    flex:1 1 170px; height:110px;
+  }
+  .dist-logo img{max-height:100%; max-width:100%; width:auto; height:auto; object-fit:contain;}
+
+  /* ===== Equipe ===== */
+  #equipe{background:var(--ink); color:#fff;}
+  #equipe .eyebrow{color:var(--amber);}
+  #equipe .eyebrow::before{background:var(--amber);}
+  #equipe .section-head h2{color:#fff;}
+  #equipe .section-head p{color:#b7b5af;}
+  .equipe-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .equipe-card{background:var(--ink); padding:32px 26px;}
+  .equipe-card h4{font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--amber); margin-bottom:14px; font-weight:600;}
+  .equipe-card p{font-family:var(--display); font-size:19px; font-weight:600; margin-bottom:8px;}
+  .equipe-card a{font-size:14px; color:#cecbc4; display:flex; align-items:center; gap:6px;}
+  .equipe-card a:hover{color:var(--amber);}
+  @media(max-width:900px){ .equipe-grid{grid-template-columns:1fr 1fr;} }
+  @media(max-width:560px){ .equipe-grid{grid-template-columns:1fr;} }
+
+  /* ===== Contato / Footer ===== */
+  #contato{
+    background:linear-gradient(160deg, var(--red) 0%, var(--red-dark) 100%);
+    color:#fff; text-align:center;
+  }
+  #contato h2{font-size:clamp(28px,4.4vw,46px); font-weight:700;}
+  #contato p{margin:18px auto 34px; max-width:520px; font-size:16.5px; color:#ffe0da;}
+  #contato .hero-actions{justify-content:center;}
+  #contato .btn-ghost{border-color:rgba(255,255,255,.5);}
+  #contato .btn-primary{background:var(--ink);}
+  #contato .btn-primary:hover{background:#000;}
+
+  footer{background:var(--ink); color:#a9a7a1; padding:40px 0; font-size:13.5px;}
+  .footer-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .footer-inner .brand-name{color:#fff;}
+  footer a:hover{color:var(--amber);}
+
+  /* Reveal animation — só ativa se o JS de fato rodar (ver script no fim do body) */
+  .js .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .js .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1 !important; transform:none !important; transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* Mobile menu */
+  .mobile-menu{
+    position:fixed; inset:0; background:var(--ink); z-index:200;
+    display:none; flex-direction:column; align-items:center; justify-content:center; gap:28px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-family:var(--display); font-size:26px; color:#fff; font-weight:600;}
+  .mobile-menu .close-btn{position:absolute; top:24px; right:28px; background:none; border:none; color:#fff; font-size:30px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#topo" class="brand">
+      <img src="assets/logo_transparent.png" alt="WW Transportes de Cargas">
+      <span class="brand-name">WW TRANSPORTES<small>TRANSPORTE DE COMBUSTÍVEIS</small></span>
+    </a>
+    <nav class="links">
+      <a href="#sobre">Quem somos</a>
+      <a href="#identidade">Missão &amp; valores</a>
+      <a href="#frota">Frota</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#equipe">Equipe</a>
+    </nav>
+    <a href="https://wa.me/5561999680640" target="_blank" class="nav-cta">Falar no WhatsApp</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" id="closeBtn" aria-label="Fechar menu">✕</button>
+  <a href="#sobre">Quem somos</a>
+  <a href="#identidade">Missão &amp; valores</a>
+  <a href="#frota">Frota</a>
+  <a href="#cobertura">Cobertura</a>
+  <a href="#equipe">Equipe</a>
+  <a href="https://wa.me/5561999680640" target="_blank">WhatsApp</a>
+</div>
+
+<div id="topo"></div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="rule"></span> Base de distribuição → Postos do DF e Entorno</div>
+    <h1>Combustível entregue com <em>segurança</em>, do início ao fim da rota.</h1>
+    <p>Desde 2007, a WW Transportes é especializada no transporte exclusivo de combustíveis para redes de postos em Brasília, com frota própria e equipe dedicada à excelência operacional.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5561999680640" target="_blank" class="btn btn-primary">Solicitar frete →</a>
+      <a href="#frota" class="btn btn-ghost">Conhecer a frota</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>2007</b><span>Fundação</span></div>
+      <div class="stat"><b>12+</b><span>Veículos na frota</span></div>
+      <div class="stat"><b>23·30·35M³</b><span>Capacidade dos CTs</span></div>
+      <div class="stat"><b>DF</b><span>+ Entorno</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap sobre-grid">
+    <div class="sobre-photo reveal">
+      <img src="assets/truck9.jpg" alt="Caminhão-tanque da WW Transportes" style="width:100%; height:auto; display:block;">
+      <div class="tag"><b>19 anos</b>de estrada</div>
+    </div>
+    <div class="sobre-text reveal">
+      <h3>Quem somos</h3>
+      <h2 style="font-size:32px; margin-bottom:18px;">Especialistas em transporte exclusivo de combustíveis</h2>
+      <p>A <strong>WW Transportes</strong> nasceu em <strong>2007</strong>, sediada na Quadra 5, Lote 40, Setor de Indústria — Ceilândia (DF). Desde então, trabalhamos exclusivamente com o transporte de combustíveis, ligando as bases de distribuição aos postos do Distrito Federal e entorno.</p>
+      <p>Nosso compromisso é atender cada cliente com <strong>excelência e qualidade</strong>, unindo frota própria, motoristas experientes e protocolos rígidos de segurança em cada viagem.</p>
+      <div class="sobre-facts">
+        <div><b>Ceilândia – DF</b><span>Sede administrativa</span></div>
+        <div><b>Frota própria</b><span>Volvo · Mercedes-Benz · Scania</span></div>
+        <div><b>8 distribuidoras</b><span>Petrobras, Shell, Ipiranga e mais</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="identidade">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Nosso negócio</div>
+      <h2>Missão, visão e o que nos move</h2>
+      <p>Soluções sustentáveis em transporte e logística integrada, com foco absoluto em segurança — porque cada carga que levamos é combustível.</p>
+    </div>
+    <div class="mvv-grid reveal">
+      <div class="mvv-card">
+        <h4>Missão</h4>
+        <p>Atender nossos clientes com perfeição, agregando valor ao seu negócio em cada frete realizado.</p>
+      </div>
+      <div class="mvv-card">
+        <h4>Visão</h4>
+        <p>Estar entre as melhores empresas de transporte de combustíveis em Brasília, reconhecida pela confiança que entrega.</p>
+      </div>
+      <div class="mvv-card">
+        <h4>Negócio</h4>
+        <p>Soluções sustentáveis em transporte e logística integrada para a cadeia de distribuição de combustíveis.</p>
+      </div>
+    </div>
+
+    <div class="valores-row reveal">
+      <div class="valor">
+        <div class="diamond"><span>SST<br>MA</span></div>
+        <p><b>Segurança &amp; meio ambiente</b>Segurança, saúde, meio ambiente e qualidade são pilares fundamentais do nosso negócio.</p>
+      </div>
+      <div class="valor">
+        <div class="diamond"><span>+<br>PESSOAS</span></div>
+        <p><b>Valorização das pessoas</b>Valorização e reconhecimento das pessoas estão no centro das nossas atenções.</p>
+      </div>
+      <div class="valor">
+        <div class="diamond"><span>AGIL.</span></div>
+        <p><b>Agilidade</b>Agilidade na identificação de necessidades e no estabelecimento de soluções.</p>
+      </div>
+      <div class="valor">
+        <div class="diamond"><span>TRANS<br>FORM.</span></div>
+        <p><b>Transformação</b>Líderes e equipe como agentes de transformação, protagonistas de inovação e mudança.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="frota">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Frota própria</div>
+      <h2>Caminhões-tanque para cada demanda</h2>
+      <p>Trabalhamos com carretas-tanque (CTs) de diferentes capacidades, prontas para atender desde postos de bairro até grandes redes.</p>
+    </div>
+    <div class="frota-grid reveal">
+      <div class="frota-card">
+        <div class="photo">
+          <img src="assets/truck3.jpg" alt="Caminhão-tanque 23m³ WW Transportes">
+          <div class="capacity-tag"><span>23<br>M³</span></div>
+        </div>
+        <div class="info">
+          <h4>CT de 23m³</h4>
+          <p>Ideal para rotas urbanas e entregas de menor volume no DF.</p>
+        </div>
+      </div>
+      <div class="frota-card">
+        <div class="photo">
+          <img src="assets/truck2.jpg" alt="Caminhão-tanque 30m³ WW Transportes">
+          <div class="capacity-tag"><span>30<br>M³</span></div>
+        </div>
+        <div class="info">
+          <h4>CT de 30m³</h4>
+          <p>Equilíbrio entre capacidade e agilidade para rotas de médio porte.</p>
+        </div>
+      </div>
+      <div class="frota-card">
+        <div class="photo">
+          <img src="assets/truck1.jpg" alt="Caminhão-tanque 35m³ WW Transportes">
+          <div class="capacity-tag"><span>35<br>M³</span></div>
+        </div>
+        <div class="info">
+          <h4>CT de 35m³</h4>
+          <p>Maior capacidade da frota, para grandes volumes e longas distâncias.</p>
+        </div>
+      </div>
+    </div>
+    <div class="frota-slideshow reveal">
+      <div class="slide-frame" id="slideFrame">
+        <img src="assets/truck6.jpg" alt="Frota WW Transportes" class="active">
+        <img src="assets/truck7.jpg" alt="Frota WW Transportes">
+        <img src="assets/truck8.jpg" alt="Frota WW Transportes">
+        <img src="assets/truck12.jpg" alt="Frota WW Transportes">
+        <img src="assets/truck10.jpg" alt="Frota WW Transportes">
+        <img src="assets/truck4.jpg" alt="Frota WW Transportes">
+        <img src="assets/truck5.jpg" alt="Frota WW Transportes">
+      </div>
+      <div class="slide-dots" id="slideDots"></div>
+    </div>
+  </div>
+</section>
+
+<section id="cobertura">
+  <div class="wrap cobertura-grid">
+    <div class="cobertura-text reveal">
+      <div class="eyebrow">Área de atuação</div>
+      <h2 style="font-size:32px; margin-bottom:18px;">Da base de distribuição até o posto, no DF e entorno</h2>
+      <p>Realizamos o transporte de combustíveis das principais distribuidoras até redes de postos parceiras em todo o Distrito Federal e cidades do entorno, com prazos confiáveis e rastreabilidade em cada etapa.</p>
+      <p>A confiança construída ao longo de quase duas décadas nos mantém como fornecedor de transporte para dezenas de postos e redes na região.</p>
+    </div>
+    <div class="clientes-box reveal">
+      <h3>Clientes &amp; parceiros</h3>
+      <div class="chips">
+        <span class="chip">Rede Modesto</span>
+        <span class="chip">Rede M. Ribeiro</span>
+        <span class="chip">P. Noroeste</span>
+        <span class="chip">Rede Cinco Estrelas</span>
+        <span class="chip">Rede Auto Shopping</span>
+        <span class="chip">AP. Rio Branco</span>
+        <span class="chip">Rede Ponteio</span>
+        <span class="chip">302 Sul</span>
+        <span class="chip">Rodobelo</span>
+        <span class="chip">AP. Valparaíso</span>
+        <span class="chip">Rede Planalto</span>
+        <span class="chip">A.P. Strada</span>
+        <span class="chip">P. São Rafael</span>
+        <span class="chip">Haddad</span>
+        <span class="chip">P. J&amp;M</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="distribuidoras">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Fornecedores</div>
+      <h2>Distribuidoras onde carregamos</h2>
+    </div>
+    <div class="dist-strip reveal">
+      <div class="dist-logo"><img src="assets/logo_petronac.png" alt="Petronac"></div>
+      <div class="dist-logo"><img src="assets/logo_br.png" alt="Petrobras BR"></div>
+      <div class="dist-logo"><img src="assets/logo_shell.png" alt="Shell"></div>
+      <div class="dist-logo"><img src="assets/logo_total.png" alt="Total Combustíveis"></div>
+      <div class="dist-logo"><img src="assets/logo_ipiranga.png" alt="Ipiranga"></div>
+      <div class="dist-logo"><img src="assets/logo_ciapetro.png" alt="Ciapetro"></div>
+      <div class="dist-logo"><img src="assets/logo_masut.png" alt="Grupo Masut"></div>
+      <div class="dist-logo"><img src="assets/logo_larco.png" alt="Larco"></div>
+    </div>
+  </div>
+</section>
+
+<section id="equipe">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Fale com a gente</div>
+      <h2>Time administrativo</h2>
+      <p>Quatro frentes dedicadas para manter cada frete rodando com segurança e no prazo.</p>
+    </div>
+    <div class="equipe-grid reveal">
+      <div class="equipe-card">
+        <h4>Sócio Administrativo</h4>
+        <p>Wesley Alves</p>
+        <a href="https://wa.me/5561999680640" target="_blank">↳ 61 99968-0640</a>
+      </div>
+      <div class="equipe-card">
+        <h4>Comercial</h4>
+        <p>Marcos Aurélio</p>
+        <a href="https://wa.me/5561999742403" target="_blank">↳ 61 99974-2403</a>
+      </div>
+      <div class="equipe-card">
+        <h4>Programação</h4>
+        <p>Ariosvaldo Rocha</p>
+        <a href="https://wa.me/5561985648775" target="_blank">↳ 61 98564-8775</a>
+      </div>
+      <div class="equipe-card">
+        <h4>Manutenção / Operacional</h4>
+        <p>Washington Correia</p>
+        <a href="https://wa.me/5561999659287" target="_blank">↳ 61 99965-9287</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <h2>Precisa de um frete de combustível no DF?</h2>
+    <p>Fale agora com o nosso time comercial e solicite um orçamento para sua rede de postos.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5561999742403" target="_blank" class="btn btn-primary">Falar com o Comercial →</a>
+      <a href="mailto:wwtransportes@gmail.com" class="btn btn-ghost">wwtransportes@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand-name">WW TRANSPORTES DE CARGAS</span>
+    <span>Quadra 5, Lote 40 — Setor de Indústria, Ceilândia/DF · Desde 2007</span>
+    <a href="#topo">Voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  const menuBtn = document.getElementById('menuBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Slideshow da frota (crossfade automático)
+  const slideFrame = document.getElementById('slideFrame');
+  if(slideFrame){
+    const slides = Array.from(slideFrame.querySelectorAll('img'));
+    const dotsWrap = document.getElementById('slideDots');
+    let current = 0;
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      if(i === 0) dot.classList.add('active');
+      dot.setAttribute('aria-label', 'Ver foto ' + (i+1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+    function goTo(i){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = i;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    let timer = setInterval(() => goTo((current + 1) % slides.length), 3800);
+    slideFrame.addEventListener('mouseenter', () => clearInterval(timer));
+    slideFrame.addEventListener('mouseleave', () => {
+      timer = setInterval(() => goTo((current + 1) % slides.length), 3800);
+    });
+  }
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.15});
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>

@@ -78,7 +78,7 @@
   /* ===== Header ===== */
   header{
     position:fixed; top:0; left:0; right:0; z-index:100;
-    background:rgba(33, 31, 34, 0.92);
+    background:rgba(25,24,26,.92);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
@@ -118,7 +118,7 @@
     position:relative;
     min-height:100vh;
     display:flex; align-items:flex-end;
-    background:linear-gradient(180deg, rgba(25,24,26,.55) 0%, rgba(25,24,26,.4) 40%, rgba(25,24,26,.97) 92%), url('assets/truck11.jpg') center 62%/cover no-repeat;
+    background:linear-gradient(180deg, rgba(25,24,26,.55) 0%, rgba(25,24,26,.4) 40%, rgba(25,24,26,.97) 92%), url('assets/hero.png') center 62%/cover no-repeat;
     padding-top:90px;
   }
   .hero-inner{
@@ -232,54 +232,42 @@
 
   /* ===== Frota ===== */
   #frota{background:var(--paper);}
-  .frota-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
-  .frota-card{background:#fff; border:1px solid var(--paper-dim); border-radius:4px; overflow:hidden; position:relative; transition:transform .25s, box-shadow .25s;}
-  .frota-card:hover{transform:translateY(-6px); box-shadow:0 24px 40px -18px rgba(25,24,26,.25);}
-  .frota-card .photo{position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--paper-dim); display:flex; align-items:center; justify-content:center;}
-  .frota-card .photo img{width:100%; height:100%; object-fit:contain;}
   .capacity-tag{
-    position:absolute; top:14px; right:14px;
-    width:58px; height:58px;
+    width:58px; height:58px; flex-shrink:0;
     background:var(--red); border:2px solid #fff;
     transform:rotate(45deg);
     display:flex; align-items:center; justify-content:center;
     box-shadow:0 6px 14px rgba(0,0,0,.25);
   }
   .capacity-tag span{transform:rotate(-45deg); font-family:var(--mono); font-weight:600; color:#fff; font-size:12px; text-align:center; line-height:1.1;}
-  .frota-card .info{padding:20px 22px;}
-  .frota-card .info h4{font-size:17px; font-weight:600; margin-bottom:6px;}
-  .frota-card .info p{font-size:13.5px; color:var(--steel);}
-  @media(max-width:900px){ .frota-grid{grid-template-columns:1fr 1fr;} }
-  @media(max-width:600px){ .frota-grid{grid-template-columns:1fr;} }
 
-  .frota-slideshow{margin-top:50px;}
-  .slide-frame{
-    position:relative; width:100%;
-    aspect-ratio:16/8.5;
-    background:var(--ink);
-    border-radius:6px;
-    overflow:hidden;
+  .fleet-group{margin-bottom:52px;}
+  .fleet-group:last-child{margin-bottom:0;}
+  .fleet-head{display:flex; gap:22px; align-items:center; margin-bottom:22px;}
+  .fleet-head-text h3{font-size:21px; font-weight:700; margin-bottom:4px;}
+  .fleet-head-text > p{font-size:14px; color:var(--steel); margin-bottom:14px;}
+  .compartments{display:flex; gap:5px; max-width:520px;}
+  .compartment{
+    background:var(--ink); color:#fff;
+    font-family:var(--mono); font-size:11px; font-weight:600;
+    padding:11px 4px 9px; text-align:center; border-radius:3px;
+    border-top:3px solid var(--amber);
+    white-space:nowrap;
   }
-  .slide-frame img{
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    object-fit:contain;
-    opacity:0;
-    transition:opacity 1.1s ease;
+  .fleet-photos{
+    display:grid; grid-template-columns:repeat(5, 1fr); gap:14px;
   }
-  .slide-frame img.active{opacity:1;}
-  .slide-dots{
-    display:flex; justify-content:center; gap:9px;
-    margin-top:20px;
+  .fleet-photos img{
+    width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px;
+    border:1px solid var(--paper-dim);
+    transition:transform .3s, box-shadow .3s;
   }
-  .slide-dots button{
-    width:9px; height:9px; border-radius:50%;
-    border:none; background:var(--paper-dim);
-    cursor:pointer; padding:0; transition:background .2s, transform .2s;
-  }
-  .slide-dots button.active{background:var(--red); transform:scale(1.2);}
-  @media(max-width:760px){
-    .slide-frame{aspect-ratio:4/3.4;}
+  .fleet-photos img:hover{transform:translateY(-4px); box-shadow:0 16px 28px -14px rgba(25,24,26,.3);}
+  @media(max-width:900px){ .fleet-photos{grid-template-columns:repeat(3,1fr);} }
+  @media(max-width:600px){
+    .fleet-photos{grid-template-columns:repeat(2,1fr);}
+    .fleet-head{flex-direction:column; align-items:flex-start; gap:14px;}
+    .compartments{max-width:100%;}
   }
 
   /* ===== Cobertura / Clientes ===== */
@@ -411,7 +399,7 @@
 <section id="sobre">
   <div class="wrap sobre-grid">
     <div class="sobre-photo reveal">
-      <img src="assets/truck9.jpg" alt="Caminhão-tanque da WW Transportes" style="width:100%; height:auto; display:block;">
+      <img src="assets/truck30_2.jpeg" alt="Caminhão-tanque da WW Transportes" style="width:100%; height:auto; display:block;">
       <div class="tag"><b>19 anos</b>de estrada</div>
     </div>
     <div class="sobre-text reveal">
@@ -478,50 +466,82 @@
       <h2>Caminhões-tanque para cada demanda</h2>
       <p>Trabalhamos com carretas-tanque (CTs) de diferentes capacidades, prontas para atender desde postos de bairro até grandes redes.</p>
     </div>
-    <div class="frota-grid reveal">
-      <div class="frota-card">
-        <div class="photo">
-          <img src="assets/truck3.jpg" alt="Caminhão-tanque 23m³ WW Transportes">
-          <div class="capacity-tag"><span>23<br>M³</span></div>
-        </div>
-        <div class="info">
-          <h4>CT de 23m³</h4>
+
+    <!-- ===== 23m³ ===== -->
+    <div class="fleet-group reveal">
+      <div class="fleet-head">
+        <div class="capacity-tag static"><span>23<br>M³</span></div>
+        <div class="fleet-head-text">
+          <h3>CT de 23m³</h3>
           <p>Ideal para rotas urbanas e entregas de menor volume no DF.</p>
+          <div class="compartments">
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:3">3.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+          </div>
         </div>
       </div>
-      <div class="frota-card">
-        <div class="photo">
-          <img src="assets/truck2.jpg" alt="Caminhão-tanque 30m³ WW Transportes">
-          <div class="capacity-tag"><span>30<br>M³</span></div>
-        </div>
-        <div class="info">
-          <h4>CT de 30m³</h4>
+      <div class="fleet-photos">
+        <img src="assets/truck23_1.jpg" alt="Caminhão-tanque 23m³ WW Transportes">
+        <img src="assets/truck23_2.jpg" alt="Caminhão-tanque 23m³ WW Transportes">
+        <img src="assets/truck23_3.jpg" alt="Caminhão-tanque 23m³ WW Transportes">
+        <img src="assets/truck23_4.jpg" alt="Caminhão-tanque 23m³ WW Transportes">
+        <img src="assets/truck23_5.jpg" alt="Caminhão-tanque 23m³ WW Transportes">
+      </div>
+    </div>
+
+    <!-- ===== 30m³ ===== -->
+    <div class="fleet-group reveal">
+      <div class="fleet-head">
+        <div class="capacity-tag static"><span>30<br>M³</span></div>
+        <div class="fleet-head-text">
+          <h3>CT de 30m³</h3>
           <p>Equilíbrio entre capacidade e agilidade para rotas de médio porte.</p>
+          <div class="compartments">
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+          </div>
         </div>
       </div>
-      <div class="frota-card">
-        <div class="photo">
-          <img src="assets/truck1.jpg" alt="Caminhão-tanque 35m³ WW Transportes">
-          <div class="capacity-tag"><span>35<br>M³</span></div>
-        </div>
-        <div class="info">
-          <h4>CT de 35m³</h4>
+      <div class="fleet-photos">
+        <img src="assets/truck30_1.jpg" alt="Caminhão-tanque 30m³ WW Transportes">
+        <img src="assets/truck30_2.jpeg" alt="Caminhão-tanque 30m³ WW Transportes">
+      </div>
+    </div>
+
+    <!-- ===== 35m³ ===== -->
+    <div class="fleet-group reveal">
+      <div class="fleet-head">
+        <div class="capacity-tag static"><span>35<br>M³</span></div>
+        <div class="fleet-head-text">
+          <h3>CT de 35m³</h3>
           <p>Maior capacidade da frota, para grandes volumes e longas distâncias.</p>
+          <div class="compartments">
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+            <span class="compartment" style="flex-grow:5">5.000L</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="frota-slideshow reveal">
-      <div class="slide-frame" id="slideFrame">
-        <img src="assets/truck6.jpg" alt="Frota WW Transportes" class="active">
-        <img src="assets/truck7.jpg" alt="Frota WW Transportes">
-        <img src="assets/truck8.jpg" alt="Frota WW Transportes">
-        <img src="assets/truck12.jpg" alt="Frota WW Transportes">
-        <img src="assets/truck10.jpg" alt="Frota WW Transportes">
-        <img src="assets/truck4.jpg" alt="Frota WW Transportes">
-        <img src="assets/truck5.jpg" alt="Frota WW Transportes">
+      <div class="fleet-photos">
+        <img src="assets/truck35_1.jpg" alt="Caminhão-tanque 35m³ WW Transportes">
+        <img src="assets/truck35_2.jpg" alt="Caminhão-tanque 35m³ WW Transportes">
+        <img src="assets/truck35_3.jpg" alt="Caminhão-tanque 35m³ WW Transportes">
+        <img src="assets/truck35_4.jpg" alt="Caminhão-tanque 35m³ WW Transportes">
+        <img src="assets/truck35_5.jpg" alt="Caminhão-tanque 35m³ WW Transportes">
       </div>
-      <div class="slide-dots" id="slideDots"></div>
     </div>
+
   </div>
 </section>
 
@@ -564,7 +584,7 @@
     </div>
     <div class="dist-strip reveal">
       <div class="dist-logo"><img src="assets/logo_petronac.png" alt="Petronac"></div>
-      <div class="dist-logo"><img src="assets/logo_br.png" alt="Petrobras BR"></div>
+      <div class="dist-logo"><img src="assets/logo_vibra.png" alt="Vibra Energia"></div>
       <div class="dist-logo"><img src="assets/logo_shell.png" alt="Shell"></div>
       <div class="dist-logo"><img src="assets/logo_total.png" alt="Total Combustíveis"></div>
       <div class="dist-logo"><img src="assets/logo_ipiranga.png" alt="Ipiranga"></div>
@@ -634,34 +654,6 @@
   menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
   closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
-
-  // Slideshow da frota (crossfade automático)
-  const slideFrame = document.getElementById('slideFrame');
-  if(slideFrame){
-    const slides = Array.from(slideFrame.querySelectorAll('img'));
-    const dotsWrap = document.getElementById('slideDots');
-    let current = 0;
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      if(i === 0) dot.classList.add('active');
-      dot.setAttribute('aria-label', 'Ver foto ' + (i+1));
-      dot.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(dot);
-    });
-    const dots = Array.from(dotsWrap.children);
-    function goTo(i){
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = i;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
-    let timer = setInterval(() => goTo((current + 1) % slides.length), 3800);
-    slideFrame.addEventListener('mouseenter', () => clearInterval(timer));
-    slideFrame.addEventListener('mouseleave', () => {
-      timer = setInterval(() => goTo((current + 1) % slides.length), 3800);
-    });
-  }
 
   const revealEls = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
